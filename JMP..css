@@ -1,0 +1,129 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  scroll-behavior: smooth;
+  color: #1f2a37;
+  background: #f4f7fb; /* logistics light system background */
+}
+
+/* NAV */
+header {
+  position: fixed;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(15,23,42,0.08);
+  z-index: 1000;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 50px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #1f2a37;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #1d4ed8; /* logistics blue hover */
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding-top: 80px;
+  background: linear-gradient(135deg, #f4f7fb, #e5e7eb);
+}
+
+.hero img {
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.15);
+}
+
+.hero-text h1 {
+  font-size: 40px;
+  color: #0f172a; /* deep logistics navy */
+}
+
+.hero-text p {
+  margin: 10px 0;
+  font-size: 20px;
+  color: #475569;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #1d4ed8; /* logistics blue */
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #1e40af;
+}
+
+/* SECTIONS */
+.section {
+  padding: 80px 20%;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  color: #1d4ed8; /* logistics highlight blue */
+  font-size: 28px;
+}
+
+/* DARK SECTION */
+.dark {
+  background: #eef2f7;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(15,23,42,0.06);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(15,23,42,0.1);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #0f172a; /* dark logistics footer */
+  color: white;
+}
