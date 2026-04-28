@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jake Miranda | Logistics VA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {  
+  font-family: 'Inter', sans-serif;
+  background: #f5f7fb;
+  color: #0f172a;
+  scroll-behavior: smooth;
+}
+
+/* BACKGROUND */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at top, #e2e8f0, #f5f7fb, #eef2f7);
+  filter: blur(60px);
+  z-index: -2;
+  animation: floatBg 14s ease-in-out infinite;
+}
+
+@keyframes floatBg {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+/* INTRO */
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(245,247,251,0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+}
+
+/* NEW: INTRO LAYOUT */
+.intro-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* PROFILE IMAGE */
+.profile-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 4px solid white;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+}
+
+/* BUTTON */
+.enter-btn {
+  margin-top: 25px;
+  padding: 14px 34px;
+  background: #1d4ed8;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(29,78,216,0.25);
+}
+
+.enter-btn:hover {
+  transform: translateY(-3px);
+  background: #1e40af;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 70px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 1000;
+}
+
+/* SECTIONS */
+section {
+  padding: 140px 80px;
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* TITLE */
+h2 {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #1d4ed8;
+}
+
+/* ABOUT */
+.about-box {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.06);
+}
+
+/* SKILLS */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.05);
+}
+
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(15,23,42,0.12);
+}
+
+.skill-title {
+  font-weight: 700;
+}
+
+.skill-details {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.skill-card.active .skill-details {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* EXPERIENCE */
+.exp {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 20px rgba(15,23,42,0.06);
+}
+
+.exp:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(15,23,42,0.14);
+  border-left: 4px solid #1d4ed8;
+}
+
+.exp img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.duties {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.exp.active .duties {
+  max-height: 800px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+/* TOOLS SECTION */
+.tools-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tools-container {
+  position: relative;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(15,23,42,0.08);
+}
+
+.google-container {
+  background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #fbbc05 100%);
+}
+
+.microsoft-container {
+  background: linear-gradient(135deg, #0078d4 0%, #106ebe 50%, #00bcf2 100%);
+}
+
+.tools-circle {
+  position: absolute;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.google-circle-1 {
+  width: 280px;
+  height: 280px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.15);
+  animation: rotate 20s linear infinite reverse;
+}
+
+.google-circle-2 {
+  width: 180px;
+  height: 180px;
+  top: 25%;
+  right: 15%;
+  background: rgba(255,255,255,0.1);
+  animation: rotate 25s linear infinite;
+}
+
+.google-circle-3 {
+  width: 120px;
+  height: 120px;
+  bottom: 20%;
+  left: 10%;
+  background: rgba(255,255,255,0.12);
+  animation: rotate 18s linear infinite reverse;
+}
+
+.microsoft-circle-1 {
+  width: 280px;
+  height: 280px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.15);
+  animation: rotate 22s linear infinite;
+}
+
+.microsoft-circle-2 {
+  width: 180px;
+  height: 180px;
+  top: 35%;
+  left: 15%;
+  background: rgba(255,255,255,0.1);
+  animation: rotate 28s linear infinite reverse;
+}
+
+.microsoft-circle-3 {
+  width: 120px;
+  height: 120px;
+  bottom: 25%;
+  right: 10%;
+  background: rgba(255,255,255,0.12);
+  animation: rotate 16s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.tool-logo {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  object-fit: contain;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tool-logo:hover {
+  transform: scale(1.25) translateZ(0);
+  box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* GOOGLE TOOLS POSITIONS */
+.google-tool-1 { top: 20%; left: 20%; animation: float 6s ease-in-out infinite; }
+.google-tool-2 { top: 10%; right: 20%; animation: float 7s ease-in-out infinite reverse; }
+.google-tool-3 { bottom: 25%; right: 25%; animation: float 5s ease-in-out infinite; }
+.google-tool-4 { top: 55%; left: 15%; animation: float 8s ease-in-out infinite reverse; }
+
+/* MICROSOFT TOOLS POSITIONS */
+.microsoft-tool-1 { top: 25%; left: 25%; animation: float 6.5s ease-in-out infinite reverse; }
+.microsoft-tool-2 { top: 15%; right: 15%; animation: float 7.5s ease-in-out infinite; }
+.microsoft-tool-3 { bottom: 30%; right: 20%; animation: float 5.5s ease-in-out infinite reverse; }
+.microsoft-tool-4 { top: 60%; left: 20%; animation: float 8.5s ease-in-out infinite; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-12px) scale(1.05); }
+}
+
+.tools-text {
+  text-align: center;
+  z-index: 5;
+  position: relative;
+}
+
+.tools-text h3 {
+  font-size: 26px;
+  margin-bottom: 12px;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.tools-text p {
+  color: rgba(255,255,255,0.95);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* HIRE */
+.hire {
+  text-align: center;
+}
+
+.btn {
+  padding: 14px 30px;
+  background: #1d4ed8;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(29,78,216,0.25);
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-box">
+    <img src="2.jpg" alt="Jake Miranda" class="profile-img">
+    <h1>Welcome 👋</h1>
+    <p>I’m Jake, your Logistics Virtual Assistant</p>
+    <div class="enter-btn" onclick="startSite()">Enter Website</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <strong>Jake Miranda | Logistics VA</strong>
+</nav>
+
+<div id="site" style="display:none;">
+
+<!-- ABOUT -->
+<section>
+  <h2>About Me</h2>
+  <div class="about-box">
+    <p>I am a dedicated Logistics Virtual Assistant with hands-on experience in dispatching, parcel tracking, fleet coordination, and end-to-end shipment monitoring.</p>
+    <p>I specialize in ensuring smooth operations from pickup to delivery, including return-to-sender processes.</p>
+    <p>Experienced in tracking systems, Google Sheets, and real-time updates to improve logistics workflow.</p>
+    <p>Detail-oriented, reliable, and adaptable in fast-paced logistics environments.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section>
+<h2>Core Skills</h2>
+<div class="skills">
+  <div class="skill-card" onclick="toggleCard(this)">
+    <div class="skill-title">🧠 Core Logistics Skills</div>
+    <div class="skill-details">Dispatching, Tracking, Fleet Coordination, Warehouse Coordination, RTS</div>
+  </div>
+  <div class="skill-card" onclick="toggleCard(this)">
+    <div class="skill-title">💻 Technical Skills</div>
+    <div class="skill-details">Google Sheets, TMS, Tracking Systems, Reports</div>
+  </div>
+  <div class="skill-card" onclick="toggleCard(this)">
+    <div class="skill-title">📞 Communication</div>
+    <div class="skill-details">Customer Support, Coordination, Issue Handling</div>
+  </div>
+  <div class="skill-card" onclick="toggleCard(this)">
+    <div class="skill-title">⚙️ Problem Solving</div>
+    <div class="skill-details">Delays, Missing Parcels, Route Adjustments</div>
+  </div>
+</div>
+</section>
+
+<!-- EXPERIENCE -->
+<section>
+<h2>Work Experience</h2>
+<div class="exp" onclick="toggleExp(this)">
+  <img src="J&T.png">
+  <div class="exp-content">
+    <h3>J&T Express — Quality Assurance Associate</h3>
+    <h3>Year 2021-2023</h3>
+    <div class="duties">
+      <p>Handled 15,000–30,000 parcels daily ensuring smooth dispatch and tracking.</p>
+      <!-- ... rest of duties ... -->
+    </div>
+  </div>
+</div>
+<div class="exp" onclick="toggleExp(this)">
+  <img src="Shopee.png">
+  <div class="exp-content">
+    <h3>Shopee Philippines — Analyst Operations</h3>
+    <h3>Year 2023-2024</h3>
+    <div class="duties">
+      <p>Monitored and tracked Shopee orders/parcel shipments from pickup to delivery completion</p>
+      <p>Coordinated with riders and drivers to ensure timely last-mile delivery and pickups</p>
+      <p>Communicated with agency partners regarding their deployed riders/employees</p>
+      <p>Handled buyer concerns regarding order status and delivery issues</p>
+      <p>Coordinated with sellers for RTS and failed deliveries</p>
+      <p>Verified parcel status updates in the system</p>
+      <p>Ensured accurate Proof of Delivery (POD)</p>
+      <p>Resolved missing or delayed parcel issues</p>
+      <p>Coordinated warehouse sorting and dispatch operations</p>
+      <p>Maintained daily logistics documentation</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="exp" onclick="toggleExp(this)">
+  <img src="Flash Ph.png">
+  <div class="exp-content">
+    <h3>Flash Philippines — QA/QC</h3>
+    <h3>Jul 2025-Dec 2025</h3>
+    <div class="duties">
+      <p>Monitored nationwide logistics operations and hub performance</p>
+      <p>Checked delays, errors, and operational issues</p>
+      <p>Investigated fraud cases and delivery discrepancies</p>
+      <p>Ensured proper pickup, delivery, and RTS execution</p>
+      <p>Coordinated with riders, sellers, and internal teams</p>
+      <p>Verified tracking accuracy and POD records</p>
+      <p>Ensured SOP compliance across hubs</p>
+      <p>Handled customer and seller complaints</p>
+      <p>Improved operational efficiency and delivery flow</p>
+      <p>Collaborated with departments for nationwide logistics</p>
+    </div>
+  </div>
+</div>
+  <div class="exp" onclick="toggleExp(this)">
+    <img src="SRB.png">
+    <div class="exp-content">
+      <h3>SRB Cargo — Logistic Officer</h3>
+      <h3>Jan 2025-Jun 2025</h3>
+      <div class="duties">
+        <p>Monitored cargo movement from pickup to dispatch to ensure smooth and timely operations</p>
+        <p>Coordinated with drivers and warehouse staff for shipment scheduling and cargo movement</p>
+        <p>Prepared, checked, and verified Bill of Lading (BOL) details to ensure accurate shipment documentation</p>
+        <p>Ensured all cargo information on BOL matched actual shipment contents before dispatch</p>
+        <p>Assisted in organizing and processing shipment documents including BOL, manifests, and delivery records</p>
+        <p>Updated shipment tracking status and ensured proper recording of cargo movement</p>
+        <p>Communicated with internal teams regarding shipment updates, issues, and corrections on BOL details</p>
+        <p>Assisted in resolving discrepancies between physical cargo and BOL documentation</p>
+        <p>Supported loading and unloading coordination while ensuring compliance with BOL instructions</p>
+        <p>Maintained accurate records of all BOL and shipment documents for tracking and audit purposes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Other experience items... -->
+</section>
+
+<!-- TOOLS I'VE USED SECTION (BEFORE MISSION & VISION) -->
+<section>
+  <h2>Tools I've Used</h2>
+  <div class="tools-wrapper">
+    
+    <!-- GOOGLE TOOLS -->
+    <div class="tools-container google-container">
+      <div class="tools-circle google-circle-1"></div>
+      <div class="tools-circle google-circle-2"></div>
+      <div class="tools-circle google-circle-3"></div>
+      
+      <!-- Google Tools Logos -->
+      <img src="https://img.icons8.com/color/48/000000/google-sheets.png" class="tool-logo google-tool-1" alt="Google Sheets" title="Google Sheets">
+      <img src="https://img.icons8.com/color/48/000000/google-docs.png" class="tool-logo google-tool-2" alt="Google Docs" title="Google Docs">
+      <img src="https://img.icons8.com/color/48/000000/google-drive.png" class="tool-logo google-tool-3" alt="Google Drive" title="Google Drive">
+      <img src="https://img.icons8.com/color/48/000000/google-forms.png" class="tool-logo google-tool-4" alt="Google Forms" title="Google Forms">
+      <img src="https://img.icons8.com/color/48/000000/google-maps.png" class="tool-logo google-tool-6" alt="Google Calendar" title="Google Map">
+      <img src="https://img.icons8.com/color/48/000000/google-calendar.png" class="tool-logo google-tool-5" alt="Google Calendar" title="Google Calendar">
+      
+      <div class="tools-text">
+        <h3>Google Workspace</h3>
+        <p>Sheets • Sheet • Docs • Drive • Forms• Calendar• Maps</p>
+      </div>
+    </div>
+    
+    <!-- MICROSOFT TOOLS -->
+    <div class="tools-container microsoft-container">
+      <div class="tools-circle microsoft-circle-1"></div>
+      <div class="tools-circle microsoft-circle-2"></div>
+      <div class="tools-circle microsoft-circle-3"></div>
+      
+      <!-- Microsoft Tools Logos -->
+      <img src="Microsoft Excel.jpg" class="tool-logo microsoft-tool-1" alt="Excel" title="Microsoft Excel">
+      <img src="Microsoft Word.jpg" class="tool-logo microsoft-tool-2" alt="Word" title="Microsoft Word">
+      <img src="Microsoft Onedrive.jpg" class="tool-logo microsoft-tool-3" alt="OneDrive" title="Microsoft OneDrive">
+      <img src="Microsoft Outlook.png" class="tool-logo microsoft-tool-4" alt="Outlook" title="Microsoft Outlook">
+      <img src="Microsoft Powerpoint.jpg" class="tool-logo microsoft-tool-5" alt="Powerpoint" title="Microsoft Powerpoint">
+
+      
+      <div class="tools-text">
+        <h3>Microsoft 365</h3>
+        <p>Excel • Word • OneDrive • Outlook</p>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section>
+<h2>Mission & Vision</h2>
+<div class="skills">
+  <div class="skill-card" onclick="toggleCard(this)">
+    <div class="skill-title">🚚 Mission</div>
+    <div class="skill-details">
+      To provide reliable and efficient logistics support by ensuring smooth dispatching, accurate parcel tracking, and strong coordination between all stakeholders—helping businesses deliver faster, minimize errors, and enhance overall operational performance with consistency and precision.
+    </div>
+  </div>
+  <div class="skill-card" onclick="toggleCard(this)">
+    <div class="skill-title">🌍 Vision</div>
+    <div class="skill-details">
+      To become a trusted Logistics Virtual Assistant recognized for optimizing supply chain operations, supporting growing businesses worldwide, and contributing to a more efficient, organized, and technology-driven logistics industry.
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- HIRE -->
+<section class="hire">
+  <h2>Hire Me</h2>
+  <a href="mailto:jakemiranda1125@gmail.com" class="btn">Send Email</a>
+</section>
+
+
+</div>
+
+
+<script>
+function startSite() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("site").style.display = "block";
+}
+
+
+function toggleCard(card) {
+  card.classList.toggle("active");
+}
+
+
+function toggleExp(exp) {
+  exp.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
